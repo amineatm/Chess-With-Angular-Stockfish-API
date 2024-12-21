@@ -124,6 +124,21 @@ export class ChessBoard {
 
           let newPiece: Piece | null = this.chessBoard[newX][newY]
           if (newPiece && newPiece.color !== piece.color) continue
+
+          // need to restrict pawn moves in certain directions
+          if (piece instanceof Pawn) {
+            // cant move pawn two squares straight if there is piece infront of him
+            if (dx === 2 || dx === -2) {
+              if (newPiece) continue;
+              if (this.chessBoard[newX + (dx === 2 ? -1 : 1)][newY]) continue;
+            }
+
+            // can't move pawn one square straight if piece is infront of him
+            if ((dx === 1 || dx === -1) && dy === 0 && newPiece) continue;
+
+            // cant move pawn diagonally if there is no piece, or piece has same color as pawn
+            if ((dy === 1 || dy === -1) && (!newPiece || piece.color === newPiece.color)) continue;
+          }
           if (newPiece instanceof Pawn || newPiece instanceof Knight || newPiece instanceof King) {
             if (this.isPositionSafeAfterMove(piece, x, y, newX, newY)) {
               pieceSafeSquares.push({ x: newX, y: newY })
@@ -143,6 +158,9 @@ export class ChessBoard {
               newY += dy;
             }
           }
+        }
+        if (pieceSafeSquares.length) {
+          safeSquares.set(x + "," + y, pieceSafeSquares)
         }
       }
     }

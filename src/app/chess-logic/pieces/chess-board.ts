@@ -14,14 +14,14 @@ export class ChessBoard {
   constructor() {
     this.chessBoard = [
       [
+        new Rook(Color.white),
+        new Knight(Color.white),
+        new Bishop(Color.white),
         new Queen(Color.white),
         new King(Color.white),
-        new Rook(Color.white),
-        new Rook(Color.white),
-        new Knight(Color.white),
-        new Knight(Color.white),
         new Bishop(Color.white),
-        new Bishop(Color.white),
+        new Knight(Color.white),
+        new Rook(Color.white),
       ],
       [
         new Pawn(Color.white),
@@ -48,14 +48,14 @@ export class ChessBoard {
         new Pawn(Color.black),
       ],
       [
-        new Queen(Color.black),
+        new Rook(Color.black),
+        new Knight(Color.black),
+        new Bishop(Color.black),
         new King(Color.black),
-        new Rook(Color.black),
-        new Rook(Color.black),
-        new Knight(Color.black),
-        new Knight(Color.black),
+        new Queen(Color.black),
         new Bishop(Color.black),
-        new Bishop(Color.black),
+        new Knight(Color.black),
+        new Rook(Color.black),
       ],
     ];
   }
@@ -68,6 +68,10 @@ export class ChessBoard {
         piece instanceof Piece ? piece.FENChar : null
       );
     });
+  }
+
+  public static isSquareDark(x: number, y: number): boolean {
+    return x % 2 === 0 && y % 2 === 0 || x % 2 === 1 && y % 2 === 1;
   }
 }
 

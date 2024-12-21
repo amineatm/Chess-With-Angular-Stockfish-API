@@ -107,7 +107,7 @@ export class ChessBoard {
     return isPositionSafe;
   }
 
-  private isPositionSafeAfterMove(): SafeSquares {
+  private findSafeSquares(): SafeSquares {
     const safeSquares: SafeSquares = new Map<string, Coords[]>();
 
     for (let x = 0; x < this.chessBoardSize; x++) {

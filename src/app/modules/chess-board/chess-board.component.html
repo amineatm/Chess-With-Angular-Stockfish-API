@@ -1,16 +1,8 @@
 <div class="chess-board">
   <div *ngFor="let row of chessBoardView; let x = index" class="row">
-    <div
-      *ngFor="let piece of row; let y = index"
-      class="square"
-      [ngClass]="{ dark: isSquare(x, y), light: !isSquare(x, y) }"
-    >
-      <img
-        *ngIf="piece"
-        [src]="pieceImagePaths[piece]"
-        [alt]="piece"
-        class="piece"
-      />
+    <div *ngFor="let piece of row; let y = index" class="square"
+      [ngClass]="{ dark: isSquare(x, y), light: !isSquare(x, y) }">
+      <img *ngIf="piece" [src]="pieceImagePaths[piece]" [alt]="piece" class="piece" />
       <!-- {{ x + "," + y }} -->
     </div>
   </div>

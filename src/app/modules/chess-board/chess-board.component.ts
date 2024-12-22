@@ -31,6 +31,6 @@ export class ChessBoardComponent {
   }
 
   public selectingPiece(x: number, y: number) {
-    throw new Error('Method not implemented.');
+    //throw new Error('Method not implemented.');
   }
 }
